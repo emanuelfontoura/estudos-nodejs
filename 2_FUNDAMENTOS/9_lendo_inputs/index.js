@@ -1,10 +1,9 @@
-const chalk = require('chalk')
-const rl = require('readline').createInterface({
+const readline = require('readline').createInterface({
     input: process.stdin,
-    output: process.stdout,
+    output: process.stdout
 })
 
-rl.question("Qual o seu nome?", (language) => {
-    console.log(chalk.bold("Seja bem-vindo(a)") + chalk.red(` ${language}`))
-    rl.close()
+readline.question('Qual sua linguagem favorita?', (linguagem) => {
+    console.log(`A sua linguagem favorita é ${linguagem}`)
+    readline.close()
 })
