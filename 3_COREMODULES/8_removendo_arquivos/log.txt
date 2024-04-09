@@ -1,0 +1,2 @@
+{"errno":-4058,"code":"ENOENT","syscall":"unlink","path":"C:\\Users\\Emanuel\\Documents\\Emanuel\\Programação 2022\\estudos-nodejs\\3_COREMODULES\\8_removendo_arquivos\\arquivo.txt"}, 
+{"errno":-4058,"code":"ENOENT","syscall":"unlink","path":"C:\\Users\\Emanuel\\Documents\\Emanuel\\Programação 2022\\estudos-nodejs\\3_COREMODULES\\8_removendo_arquivos\\arquivo.txt"}, 
