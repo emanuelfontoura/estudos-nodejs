@@ -7,7 +7,7 @@ const server = http.createServer((req, res) => {
     const filename = q.pathname.substring(1)
 
     if(filename.includes('html')){
-        if(fs.existsSync(filename)){
+        if(fs.existsSync(filename) && filename !== '404.html'){
             fs.readFile(filename, ((err, data) => {
                 res.writeHead(200, {'Content-Type' : 'text/html'})
                 res.write(data)
