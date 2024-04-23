@@ -67,7 +67,7 @@ function buildAccount(){
             buildAccount()
             return
         }
-        fs.writeFileSync(`accounts/${response.accountName}.json`, '{"balance":0}', ((err, data) => {
+        fs.writeFileSync(`accounts/${response.accountName}.json`, '{"balance":0}', (err => {
             if(err){
                 console.log(err)
             }
@@ -78,7 +78,24 @@ function buildAccount(){
 }
 
 function checkBalance(){
-    console.log('Consultar saldo')
+    inquirer.prompt([
+        {
+            name : 'accountName',
+            message : 'Nome da conta para consulta de saldo:'
+        }
+    ])
+    .then(response => {
+        const name = response.accountName
+        if(!existsAccount(name)){
+            return checkBalance()
+        }else{
+            const accountData = getAccount(response.accountName)
+            const balance = Number(accountData.balance)
+            console.log(chalk.bgBlue.black(`O saldo da conta é de: R$ ${balance},00`))
+            operation()
+        }
+    })
+    
 }
 
 function deposit(){
@@ -87,29 +104,32 @@ function deposit(){
             name: 'accountName',
             message : 'Nome da conta para depósito: '
         },
-    ])
-    .then(responseAccountName => {
-        if(!existsAccount(responseAccountName.accountName)){
-            console.log(chalk.bgRed.black('Esta conta não existe!'))
-            return deposit()
-        }else{
-            inquirer.prompt([
-                {
-                    name : 'depositValue',
-                    message : 'Valor para depósito: '
-                }
-            ])
-            .then(responseDepositValue => {
-                addAmount(responseAccountName.accountName, responseDepositValue.depositValue)
-                operation()
-            })
+        {
+            name : 'depositValue',
+            message : 'Valor para depósito: '
         }
+    ])
+    .then(response => {
+        manipulationBalance(response.accountName, response.depositValue, deposit)
     })
     .catch(err => console.log(err))
 }
 
 function withdraw(){
-    console.log('Sacar')
+    inquirer.prompt([
+        {
+            name: 'accountName',
+            message : 'Nome da conta para saque: '
+        },
+        {
+            name : 'withdrawValue',
+            message : 'Valor para saque: '
+        }
+    ])
+    .then(response => {
+        manipulationBalance(response.accountName, response.withdrawValue, withdraw)
+    })
+    .catch(err => console.log(err))
 }
 
 function exit(){
@@ -126,23 +146,43 @@ function existsAccount(accountName){
     }
 }
 
-function addAmount(accountName, value){
-    const accountData = getAccount(accountName)
-    if(!value){
-        console.log(chalk.bgRed.black('Preencha com algum valor!'))
-        deposit()
+function manipulationBalance(accountName, value, action){
+    if(!existsAccount(accountName)){
+        console.log(chalk.bgRed.black('Está conta não existe!'))
+        return action()
+    }else{
+        const accountData = getAccount(accountName)
+        if(!value || isNaN(Number(value))){
+            console.log(chalk.bgRed.black('Preencha com algum valor!'))
+            return action()
+        }
+        let actionTradution
+        switch (action.name){
+            case 'deposit':
+                actionTradution = 'depositado'
+                accountData.balance = Number(accountData.balance) + Number(value)
+                break;
+            case 'withdraw':
+                actionTradution = 'sacado'
+                if(Number(accountData.balance) < Number(value)){
+                    console.log('Valor indisponível para saque!')
+                    return action()
+                }
+                accountData.balance = Number(accountData.balance) - Number(value)
+                break;
+        }
+        fs.writeFileSync(
+            `accounts/${accountName}.json`,
+            JSON.stringify(accountData),
+            (err => {
+                if(err){
+                    console.log(err)
+                }
+            })
+        )
+        console.log(chalk.green(`Foi ${actionTradution} o valor de R${value},00 na conta ${accountName}.`))
+        operation()
     }
-    accountData.balance = parseFloat(value) + parseFloat(accountData.balance)
-    fs.writeFileSync(
-        `accounts/${accountName}.json`,
-        JSON.stringify(accountData),
-        (err => {
-            if(err){
-                console.log(err)
-            }
-        })
-    )
-    console.log(chalk.green(`Foi depositado o valor de R${value},00 na conta ${accountName}.`))
 }
 
 function getAccount(accountName){
