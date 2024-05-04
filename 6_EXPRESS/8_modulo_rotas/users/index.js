@@ -4,6 +4,10 @@ const path = require('path')
 
 const basePath = path.join(__dirname, '../templates')
 
+router.use(express.urlencoded({
+    extended: true
+}))
+
 router.get('/add', ((req, res) => {
     res.sendFile(`${basePath}/add.html`)
 }))
@@ -18,6 +22,10 @@ router.get('/:id', ((req, res) => {
     // leitura da tabela users no b.d, buscando pelo user com esse id
     console.log(`Estamos buscando pelo usuário ${id}`)
     res.sendFile(`${basePath}/users.html`)
+}))
+
+router.get('/', ((req, res) => {
+    res.sendFile(`${basePath}/usersIndex.html`)
 }))
 
 module.exports = router

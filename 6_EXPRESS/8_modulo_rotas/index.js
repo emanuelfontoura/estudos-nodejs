@@ -4,13 +4,9 @@ const path = require('path')
 
 const users = require('./users')
 
-const basePath = path.join(__dirname, 'templates')
-
-app.use(express.urlencoded({
-    extended: true
-}))
-
 app.use('/users', users)
+
+const basePath = path.join(__dirname, 'templates')
 
 app.get('/', ((req, res) => {
     res.sendFile(`${basePath}/index.html`)
