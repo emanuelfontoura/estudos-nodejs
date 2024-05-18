@@ -1,0 +1,26 @@
+<h1>Editar livro</h1>
+{{#each data}}
+    <ul>
+        <li>
+            ID: {{this.id}}
+        </li>
+        <li>
+            TÍTULO: {{this.title}}
+        </li>
+        <li>
+            PÁGINAS: {{this.pageqty}}
+        </li>
+    </ul>
+    <form action="/livros/responseEdit/{{this.id}}" method="POST">
+        <div>
+            <label for="newTitle">Novo título</label>
+            <input type="text" name="newTitle" id="newTitle" placeholder="Novo título" required value="{{this.title}}">
+        </div>
+        <div>
+            <label for="newPageqty">Nova quantidade de páginas</label>
+            <input type="number" name="newPageqty" id="newPageqty" required value="{{this.pageqty}}">
+        </div>
+        <button type="submit">Editar</button>
+    </form>
+{{/each}}
+<a href="/" style="display: block;">Início</a>

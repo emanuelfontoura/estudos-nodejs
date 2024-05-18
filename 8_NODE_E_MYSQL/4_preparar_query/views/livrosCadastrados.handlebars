@@ -1,0 +1,16 @@
+<h1>Livros cadastrados</h1>
+<ul>
+    {{#each data}}
+        <li>
+            # {{this.id}} - 
+            <a href="/livros/{{this.id}}">{{this.title}}</a>
+            - {{this.pageqty}}
+            <form action="/livros/deletar/{{this.id}}" method="POST" style="display: inline-block;">
+                <button type="submit">DELETAR</button>
+            </form>
+            <button><a href="/livros/editar/{{this.id}}">EDITAR</a></button>
+        </li>
+    {{/each}}
+</ul>
+<a href="/livros/cadastrar">Cadastrar livro</a>
+<a href="/" style="display: block;">Início</a>
