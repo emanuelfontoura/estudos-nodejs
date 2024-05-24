@@ -1,0 +1,11 @@
+<h1>Usuários cadastrados</h1>
+<ul>
+    {{#each users}}
+        <li>
+            {{this.name}} | {{this.occupation}} | {{this.newsletter}}
+            <form action="/usuarios/deleteResponse/{{this.id}}" method="POST" style="display: inline-block;">
+                <button type="submit">DELETAR</button>
+            </form>
+        </li>
+    {{/each}}
+</ul>
