@@ -1,0 +1,11 @@
+<h1>Dados usuario</h1>
+<p><strong>Nome:</strong> {{user.name}}</p>
+<p><strong>Profissão:</strong> {{user.occupation}}</p>
+<p><strong>Newsletter:</strong> {{user.newsletter}}</p>
+<h1>Endereços</h1>
+{{#each userAddress}}
+    <h2>Endereço</h2>
+    <p><strong>Rua:</strong> {{this.street}}</p>
+    <p><strong>Número:</strong> {{this.number}}</p>
+    <p><strong>Cidade:</strong> {{this.city}}</p>
+{{/each}}

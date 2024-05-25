@@ -1,0 +1,27 @@
+<h1>Edite o usuário {{user.name}}</h1>
+<p><strong>Nome:</strong> {{user.name}}</p>
+<p><strong>Ocupação:</strong> {{user.occupation}}</p>
+<p><strong>Newsletter:</strong> {{user.newsletter}}</p>
+<form action="/usuarios/editResponse/{{user.id}}" method="POST">
+    <div>
+        <label for="name">Novo nome</label>
+        <input type="text" name="name" id="name" value="{{user.name}}" placeholder="Digite o novo nome">
+    </div>
+    <div>
+        <label for="occupation">Nova ocupação</label>
+        <input type="text" name="occupation" id="occupation" value="{{user.occupation}}" placeholder="Digite a nova ocupação">
+    </div>
+    <div>
+        <label for="newsletter">
+            Newsletter
+            {{#if user.newsletter}}
+                <input type="radio" name="newsletter" id="newsletter" value="Y" checked>ATIVADO
+                <input type="radio" name="newsletter" id="newsletter" value="N">DESATIVADO
+            {{else}}
+                <input type="radio" name="newsletter" id="newsletter" value="Y">ATIVADO
+                <input type="radio" name="newsletter" id="newsletter" value="N" checked>DESATIVADO
+            {{/if}}
+        </label>
+    </div>
+    <button type="submit">EDITAR</button>
+</form>
