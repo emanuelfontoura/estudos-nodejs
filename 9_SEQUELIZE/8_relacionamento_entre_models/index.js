@@ -90,15 +90,11 @@ app.get('/usuarios/:id', ( async (req, res) => {
     const id = req.params.id
 
     const user = await User.findOne({
-        raw : true,
+        include : Address,
         where : {id}
     })
-    const userAddress = await Address.findAll({
-        raw : true,
-        where : {UserId : id}
-    })
 
-    res.render('user', {user, userAddress})
+    res.render('user', {user})
 }))
 
 app.get('/', ((req, res) => {
