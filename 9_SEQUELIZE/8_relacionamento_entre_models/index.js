@@ -1,6 +1,7 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
 const conn = require('./db/conn.js')
+const {getUserAddresses} = require('./services/getUserAdresses.js')
 
 const User = require('./models/User.js')
 const Address = require('./models/Address')
@@ -53,7 +54,8 @@ app.get('/usuarios/editar/:id', (async (req, res) => {
     }else{
         user.newsletter = false
     }
-    res.render('userEdit', {user})
+    const userAddresses = await getUserAddresses(id)
+    res.render('userEdit', {user, userAddresses})
 }))
 
 app.post('/usuarios/deleteResponse/:id', (async (req, res) => {
@@ -90,11 +92,13 @@ app.get('/usuarios/:id', ( async (req, res) => {
     const id = req.params.id
 
     const user = await User.findOne({
-        include : Address,
+        raw : true,
         where : {id}
     })
 
-    res.render('user', {user})
+    const userAddresses = await getUserAddresses(id)
+
+    res.render('user', {user, userAddresses})
 }))
 
 app.get('/', ((req, res) => {

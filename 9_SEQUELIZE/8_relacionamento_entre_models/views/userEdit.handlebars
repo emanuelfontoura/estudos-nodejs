@@ -41,3 +41,13 @@
     </div>
     <button type="submit">Adicionar</button>
 </form>
+<div class="container-addresses">
+    {{#each userAddresses.addresses}}
+        <div>
+            <h2>Endereço</h2>
+            <p><strong>Rua:</strong> {{this.street}}</p>
+            <p><strong>Número:</strong> {{this.number}}</p>
+            <p><strong>Cidade:</strong> {{this.city}}</p>
+        </div>
+    {{/each}}
+</div>
