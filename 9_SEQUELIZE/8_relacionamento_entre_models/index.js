@@ -58,6 +58,17 @@ app.get('/usuarios/editar/:id', (async (req, res) => {
     res.render('userEdit', {user, userAddresses})
 }))
 
+app.post('/address/delete/:id', (async (req, res) => {
+    const id = req.params.id
+    const UserId = req.body.UserId
+    console.log(UserId)
+    await Address.destroy({
+        where : {id : id}
+    })
+
+    res.redirect(`/usuarios/${UserId}`)
+}))
+
 app.post('/usuarios/deleteResponse/:id', (async (req, res) => {
     const id = req.params.id
 
