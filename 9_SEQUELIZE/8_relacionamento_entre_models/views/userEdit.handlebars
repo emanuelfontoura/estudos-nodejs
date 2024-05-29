@@ -46,6 +46,10 @@
         <div>
             <h2>Endereço</h2>
             <p><strong>Rua:</strong> {{this.street}}</p>
+            <form action="/address/delete/{{this.id}}" method="POST" style="display: inline-block;">
+                <input type="hidden" name="UserId" value="{{this.UserId}}">
+                <button type="submit">DELETAR</button>
+            </form>
             <p><strong>Número:</strong> {{this.number}}</p>
             <p><strong>Cidade:</strong> {{this.city}}</p>
         </div>
