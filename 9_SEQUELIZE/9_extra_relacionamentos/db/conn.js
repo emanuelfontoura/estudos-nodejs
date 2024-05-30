@@ -1,5 +1,6 @@
 const { Sequelize } = require('sequelize')
 
+// connection with db
 const db = new Sequelize(
     'commerce',
     'root',

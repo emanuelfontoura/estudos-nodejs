@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize')
 const db = require('../db/conn.js')
+const Product = require('./Product.js')
 
 const Manufacturer = db.define('manufacturer', {
     id: {
@@ -14,4 +15,4 @@ const Manufacturer = db.define('manufacturer', {
     }
 })
 
-module.exports = Manufacturer
+module.exports = Manufacturer   

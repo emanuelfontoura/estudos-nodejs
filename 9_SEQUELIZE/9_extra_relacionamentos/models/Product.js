@@ -1,5 +1,7 @@
 const { DataTypes } = require('sequelize')
 const db = require('../db/conn.js')
+const ProductManufacturer = require('./ProductManufacturer.js')
+const Manufacturer = require('./Manufacturer.js')
 
 const Product = db.define('product', {
     id: {
@@ -19,5 +21,10 @@ const Product = db.define('product', {
         type : DataTypes.STRING
     }
 })
+
+Product.hasMany(ProductManufacturer)
+ProductManufacturer.belongsTo(Product)
+Manufacturer.hasMany(ProductManufacturer)
+ProductManufacturer.belongsTo(Manufacturer)
 
 module.exports = Product
