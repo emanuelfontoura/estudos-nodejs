@@ -14,10 +14,10 @@ const Product = db.define('product', {
         type : DataTypes.STRING,
         allowNull : false
     },
-    preco : {
-        type : DataTypes.DECIMAL
+    price : {
+        type : DataTypes.STRING
     },
-    descricao : {
+    description : {
         type : DataTypes.STRING
     }
 })
@@ -26,5 +26,17 @@ Product.hasMany(ProductManufacturer)
 ProductManufacturer.belongsTo(Product)
 Manufacturer.hasMany(ProductManufacturer)
 ProductManufacturer.belongsTo(Manufacturer)
+
+// Product.belongsToMany(Manufacturer, {
+//     through : {
+//         model : ProductManufacturer
+//     }
+// })
+
+// Manufacturer.belongsToMany(Product, {
+//     through : {
+//         model : ProductManufacturer
+//     }
+// })
 
 module.exports = Product

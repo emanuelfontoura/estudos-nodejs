@@ -1,1 +1,23 @@
 <h1>Cadastrar Produto</h1>
+<form action="/produto/register" method="POST">
+    <div>
+        <label for="name">Nome</label>
+        <input type="text" name="name" id="name" placeholder="Digite o nome do produto">
+    </div>
+    <div>
+        <label for="price">Preço</label>
+        <input type="text" name="price" id="price" placeholder="Digite o preço do produto">
+    </div>
+    <div>
+        <label for="description">Descrição</label>
+        <input type="text" name="description" id="description" placeholder="Descrição">
+    </div>
+    <div>
+        <select name="{{this.id}}" id="{{this.id}}">
+            {{#each manufacturerData}}
+                <option value="{{this.id}}">{{this.name}}</option>
+            {{/each}}
+        </select>
+    </div>
+    <button type="submit">Registrar</button>
+</form>
