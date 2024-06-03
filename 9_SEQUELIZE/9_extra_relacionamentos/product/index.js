@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Product = require('../models/Product.js')
 const Manufacturer = require('../models/Manufacturer.js')
+const ProductManufacturer = require('../models/ProductManufacturer.js')
 
 router.use(express.urlencoded({
     extended : true
@@ -13,10 +14,9 @@ router.get('/consultar', ((req, res) => {
 }))
 
 router.post('/register', (async (req, res) => {
-    const {name, price, description} = req.body
-
-    await Product.create({name, price, description})
-
+    const {name, price, description, manufacturerId} = req.body
+    const product = await Product.create({name, price, description})
+    await ProductManufacturer.create({productId: product.dataValues.id, manufacturerId})
     res.redirect('/')
 }))
 
@@ -25,7 +25,6 @@ router.get('/registrar', (async (req, res) => {
     manufacturerData.forEach(manufacturer => {
         manufacturer.name = manufacturer.name.toUpperCase()
     })
-    console.log(manufacturerData)
     res.render('registerProduct', {manufacturerData})
 }))
 

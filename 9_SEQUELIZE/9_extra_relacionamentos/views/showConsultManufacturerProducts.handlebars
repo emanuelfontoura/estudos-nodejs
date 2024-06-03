@@ -1,0 +1,10 @@
+<h1>Produtos da fabricante</h1>
+<div>
+    {{#each products}}
+        <div>
+            <h1>{{this.product.name}}</h1>
+            <p>{{this.product.price}}</p>
+            <p>{{this.product.description}}</p>
+        </div>
+    {{/each}}
+</div>
