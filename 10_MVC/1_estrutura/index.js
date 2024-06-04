@@ -20,6 +20,8 @@ app.use(express.static('public'))
 
 app.use('/tasks', taskRoutes)
 
+app.get('/', )
+
 conn.sync()
 .then(() => {
     app.listen(3000)

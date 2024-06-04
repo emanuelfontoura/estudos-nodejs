@@ -1,0 +1,11 @@
+<h1>Resultado da consulta</h1>
+<div>
+    {{#each manufacturer}}
+        <div>
+            <h1>{{this.manufacturer.name}}</h1>
+            <h2>{{../productData.name}}</h2>
+            <p>{{../productData.price}}</p>
+            <p>{{../productData.description}}</p>
+        </div>
+    {{/each}}
+</div>

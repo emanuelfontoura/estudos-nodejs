@@ -1,8 +1,12 @@
-<h1>Consultar Produtos do Fabricante</h1>
+<h1>Resultado da consulta</h1>
 <form action="/fabricante/consult" method="POST">
     <div>
-        <label for="name">Fabricante</label>
-        <input type="text" name="name" id="name" placeholder="Digite o nome da fabricante">
+        <label for="manufacturerId">Fabricante</label>
+        <select name="manufacturerId" id="manufacturerId">
+            {{#each manufacturers}}
+                <option value="{{this.id}}">{{this.name}}</option>
+            {{/each}}
+        </select>
     </div>
     <button type="submit">Consultar</button>
 </form>

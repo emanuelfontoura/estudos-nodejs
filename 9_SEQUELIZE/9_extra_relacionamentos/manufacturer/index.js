@@ -10,9 +10,8 @@ router.use(express.urlencoded({
 
 // manufacturer routes
 router.post('/consult', (async (req, res) => {
-    const manufacturerName = req.body.name
-    const manufacturer = await Manufacturer.findOne({where: {name:manufacturerName}})
-    const products = await ProductManufacturer.findAll({raw:true, where: {manufacturerId:manufacturer.id}, include:Product})
+    const {manufacturerId} = req.body
+    const products = await ProductManufacturer.findAll({raw:true, where: {manufacturerId}, include:Product})
     const formattedProducts = products.map(item => ({
         id: item.id,
         createdAt: item.createdAt,
@@ -31,8 +30,9 @@ router.post('/consult', (async (req, res) => {
     res.render('showConsultManufacturerProducts', {products:formattedProducts})
 }))
 
-router.get('/consultar', ((req, res) => {
-    res.render('consultManufacturerProducts')
+router.get('/consultar', (async (req, res) => {
+    const manufacturers = await Manufacturer.findAll({raw:true})
+    res.render('consultManufacturerProducts', {manufacturers})
 }))
 
 router.post('/register', (async (req, res) => {
