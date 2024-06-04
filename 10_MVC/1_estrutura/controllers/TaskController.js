@@ -6,6 +6,12 @@ module.exports = class TaskController {
         res.render('tasks/add')
     }
 
+    static async createTaskSave(req, res){
+        const {name, description} = req.body
+        await Task.create({name, description, done: false})
+        res.redirect('/')
+    }
+
     static showTasks(req, res){
         res.render('tasks/show')
     }

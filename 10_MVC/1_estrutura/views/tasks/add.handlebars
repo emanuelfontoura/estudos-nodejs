@@ -1,1 +1,12 @@
 <h1>Create Tasks</h1>
+<form action="/tasks/add" method="POST">
+    <div>
+        <label for="title">Título</label>
+        <input type="text" name="title" id="title" placeholder="Digite o título da task">
+    </div>
+    <div>
+        <label for="description">Descrição</label>
+        <input type="text" name="description" id="description" placeholder="Digite a descrição da task">
+    </div>
+    <button type="submit">Adicionar</button>
+</form>
