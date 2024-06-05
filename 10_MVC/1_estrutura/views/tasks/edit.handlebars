@@ -1,0 +1,14 @@
+<h2>{{task.title}}</h2>
+<p>{{task.description}}</p>
+<form action="/tasks/editSave" method="POST">
+    <div>
+        <label for="title">Novo título</label>
+        <input type="text" name="title" id="title" placeholder="Digite o novo título" value="{{task.title}}">
+    </div>
+    <div>
+        <label for="description">Nova descrição</label>
+        <input type="text" name="description" id="description" placeholder="Digite a nova descrição" value="{{task.description}}">
+    </div>
+    <input type="hidden" name="id" id="id" value="{{task.id}}">
+    <button type="submit">Editar</button>
+</form>

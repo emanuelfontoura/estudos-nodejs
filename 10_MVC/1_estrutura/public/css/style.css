@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+h1{
+    text-align: center;
+}
+
+ul{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+.task{
+    display: grid;
+    grid-template-columns: 500px 350px;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.task > a{
+    font-size: 1.3rem;
+    padding: 10px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.task-icons a i{
+    font-size: 1.5rem;
+}
