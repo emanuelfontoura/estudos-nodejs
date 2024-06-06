@@ -31,3 +31,9 @@ a{
 .task-icons a i{
     font-size: 1.5rem;
 }
+
+.finished{
+    color: greenyellow;
+    font-weight: 800;
+    text-decoration: line-through;
+}

@@ -17,6 +17,8 @@ router.post('/add', TaskController.createTaskSave)
 
 router.get('/', TaskController.showTasks)
 
+router.post('/updateStatus', TaskController.toggleTaskStatus)
+
 router.get('/:id', TaskController.showTask)
 
 module.exports = router
