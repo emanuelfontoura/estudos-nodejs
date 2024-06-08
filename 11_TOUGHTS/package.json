@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "start": "nodemon ./index.js localhost 3000"
+  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "connect-flash": "^0.1.1",
