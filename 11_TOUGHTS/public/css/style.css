@@ -1,5 +1,12 @@
 @charset "UTF-8";
 
+.bebas-neue-regular {
+    font-family: "Bebas Neue";
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 1.5px;
+}
+
 *{
     padding: 0px;
     margin: 0px;
@@ -9,12 +16,12 @@
 
 a{
     text-decoration: none;
-    color: black;
+    color: #F2C53D;
 }
 
 .header-main{
-    background-color: rgba(255, 240, 30, 0.867);
-    padding: 1.5rem;
+    background-color: #222;
+    padding: 1.7rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -28,11 +35,11 @@ a{
 .nav-main ul{
     list-style: none;
     display: flex;
-    gap: 1rem;
+    gap: 2rem;
 }
 
 .nav-main ul li a{
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     transition-duration: .3s;
 }
 
@@ -42,6 +49,7 @@ a{
 
 .main-main{
     padding: 1.5rem;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .footer-main{
@@ -52,4 +60,9 @@ a{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.footer-main a{
+    background-color: #222;
+    padding: 7.5px;
 }

@@ -10,6 +10,10 @@ const conn = require('./db/conn.js')
 const Tought = require('./models/Tought.js')
 const User = require('./models/User.js')
 
+// importação das rotas
+const toughtsRoutes = require('./routes/toughtsRoutes.js')
+const userRoutes = require('./routes/userRoutes.js')
+
 // criando e definindo a engine do handlebars
 const app = express()
 const hbs = exphbs.create({
@@ -41,7 +45,7 @@ app.use(
         cookie:{
             secure:false,
             maxAge:360000,
-            expires: new Date(Date.now + 360000),
+            // expires: new Date(Date.now + 360000),
             httpOnly:true
         }   
     })
@@ -58,8 +62,11 @@ app.use((req, res, next) => {
     next()
 })
 
-// rota "home"
-app.get('/', (req, res) => res.render('home'))
+// rotas "toughts"
+app.use('', toughtsRoutes)
+
+// rotas "user"
+app.use('', userRoutes)
 
 // conexão e sincronização com o bd
 conn
