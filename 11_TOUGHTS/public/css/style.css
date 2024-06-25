@@ -14,6 +14,14 @@
     font-family: 'Courier New', Courier, monospace;
 }
 
+.messages{
+    text-align: center;
+    color: rgb(250, 63, 63);
+    background-color: #222;
+    padding: 0.7rem;
+    border-radius: .2rem;
+}
+
 a{
     text-decoration: none;
     color: #F2C53D;
@@ -50,6 +58,82 @@ a{
 .main-main{
     padding: 1.5rem;
     font-family: 'Times New Roman', Times, serif;
+}
+
+.auth-container{
+    padding: 15px;
+}
+
+.form-container{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem;
+    gap: 0.8rem;
+}
+
+.form-container p{
+    text-align: center;
+}
+
+button{
+    padding: 0.6rem 1.2rem;
+    background-color: #222;
+    color: #F2C53D;
+    cursor: pointer;
+}
+
+input{
+    padding: 0.6rem;
+    width: 100%;
+    margin-top: 0.3rem;
+}
+
+.auth-container a{
+    position: relative;
+}
+
+.auth-container a::before{
+    content: '';
+    display: inline-block;
+    position: absolute;
+    width: 0px;
+    opacity: 0;
+    height: 0.2rem;
+    background-color: #F2C53D;
+    bottom: -3px;
+    left: 3px;
+    transition: .3s;
+}
+
+.auth-container a:hover::before{
+    animation: showUnderline .3s forwards;
+}
+
+.auth-container a:not(:hover)::before{
+    animation: backUnderline .4s forwards;
+}
+
+@keyframes showUnderline {
+    0%{
+        width: 0;
+        opacity: 0;
+    }
+    100%{
+        width: 100px;
+        opacity: 1;
+    }
+}
+
+@keyframes backUnderline {
+    from{
+        width: 100px;
+        opacity: 1;
+    }
+    to{
+        width: 0;
+        opacity: 0;
+    }
 }
 
 .footer-main{

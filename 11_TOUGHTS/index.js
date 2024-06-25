@@ -12,7 +12,7 @@ const User = require('./models/User.js')
 
 // importação das rotas
 const toughtsRoutes = require('./routes/toughtsRoutes.js')
-const userRoutes = require('./routes/userRoutes.js')
+const authRoutes = require('./routes/authRoutes.js')
 
 // criando e definindo a engine do handlebars
 const app = express()
@@ -66,7 +66,7 @@ app.use((req, res, next) => {
 app.use('', toughtsRoutes)
 
 // rotas "user"
-app.use('', userRoutes)
+app.use('', authRoutes)
 
 // conexão e sincronização com o bd
 conn
