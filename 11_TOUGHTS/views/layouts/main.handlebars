@@ -28,12 +28,21 @@
                     <a class="bebas-neue-regular" href="/">Pensamentos</a>
                 </li>
                 {{!-- URL's pós autenticação --}}
-                <li>
-                    <a class="bebas-neue-regular" href="/login">Entrar</a>
-                </li>
-                <li>
-                    <a class="bebas-neue-regular" href="/register">Registrar</a>
-                </li>
+                {{#if session.userId}}
+                    <li>
+                        <a class="bebas-neue-regular" href="/toughts/dashboard">Dashboard</a>
+                    </li>
+                    <li>
+                        <a class="bebas-neue-regular" href="/logout">Sair</a>
+                    </li>
+                {{else}}
+                    <li>
+                        <a class="bebas-neue-regular" href="/login">Entrar</a>
+                    </li>
+                    <li>
+                        <a class="bebas-neue-regular" href="/register">Registrar</a>
+                    </li>
+                {{/if}}
             </ul>
         </nav>
     </header>
