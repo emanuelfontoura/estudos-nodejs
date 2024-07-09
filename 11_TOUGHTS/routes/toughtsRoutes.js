@@ -2,7 +2,11 @@ const express = require('express')
 const router = express.Router()
 const ToughtController = require('../controllers/ToughtController.js')
 
+// auth helper
+const checkAuth = require('../helpers/auth.js').checkAuth
+
 router.get('/', ToughtController.showToughts)
-router.get('/dashboard', ToughtController.dashboard)
+router.get('/dashboard', checkAuth, ToughtController.dashboard)
+router.get('/add', checkAuth, ToughtController.createTought)
 
 module.exports = router

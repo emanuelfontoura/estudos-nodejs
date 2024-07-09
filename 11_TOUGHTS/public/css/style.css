@@ -114,6 +114,10 @@ input{
     animation: backUnderline .4s forwards;
 }
 
+.buttonAddTought{
+    margin: 15px 0px;
+}
+
 @keyframes showUnderline {
     0%{
         width: 0;
