@@ -140,6 +140,17 @@ input{
     }
 }
 
+.toughts{
+    display: grid;
+    list-style: square;
+    padding: 15px;
+    gap: 15px;
+    margin-left: 20px;
+    font-size: 1.2rem;
+    font-style: italic;
+    font-weight: 300;
+}
+
 .footer-main{
     padding: 1.5rem;
     font-size: 0.8rem;
