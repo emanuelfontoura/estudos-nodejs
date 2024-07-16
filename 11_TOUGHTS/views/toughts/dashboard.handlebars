@@ -4,5 +4,10 @@
 <ul class="toughts">
     {{#each toughts}}
         <li>{{this.title}}</li>
+        <a href="/edit/{{this.id}}">Editar</a>
+        <form action="/destroy" method="POST">
+            <input type="hidden" name="id" value="{{this.id}}">
+            <input type="submit" value="Excluir" class="btn-excluir">
+        </form>
     {{/each}}
 </ul>

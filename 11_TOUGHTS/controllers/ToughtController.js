@@ -44,4 +44,9 @@ module.exports = class ToughtController{
             req.flash('message', 'Erro ao criar pensamento! ' + error)
         }
     }
+
+    static async editTought(req, res){
+        const id = req.params.id
+        await Tought.update()
+    }
 }

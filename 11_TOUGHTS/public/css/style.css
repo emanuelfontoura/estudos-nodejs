@@ -151,6 +151,16 @@ input{
     font-weight: 300;
 }
 
+.toughts form div{
+    display: flex;
+    flex-direction: row;
+}
+
+.btn-excluir{
+    width: 100px;
+    padding: 0.5rem 1rem;
+}
+
 .footer-main{
     padding: 1.5rem;
     font-size: 0.8rem;
