@@ -1,1 +1,6 @@
 <h1>Pensamentos</h1>
+<ul class="toughts">
+    {{#each toughts}}
+        <li>{{this.title}} - Criado por {{this.User.name}}</li>
+    {{/each}}
+</ul>

@@ -1,0 +1,9 @@
+<h1>Editar</h1>
+<form action="/edit/save" method="POST">
+    <div>
+        <label for="title">Pensamento</label>
+        <input type="hidden" name="id" value="{{tought.id}}">
+        <input type="text" name="title" id="title" value="{{tought.title}}">
+    </div>
+    <button type="submit">EDITAR</button>
+</form>
