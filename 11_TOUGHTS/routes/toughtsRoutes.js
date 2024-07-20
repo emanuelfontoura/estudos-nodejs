@@ -9,5 +9,6 @@ router.get('/', ToughtController.showToughts)
 router.get('/dashboard', checkAuth, ToughtController.dashboard)
 router.get('/add', checkAuth, ToughtController.createTought)
 router.post('/add', checkAuth, ToughtController.createToughtSave)
+router.get('/edit/:id', ToughtController.editTought)
 
 module.exports = router
