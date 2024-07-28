@@ -1,5 +1,7 @@
 const express = require('express')
 const app = express()
+const feedRoutes = require('./routes/feed.js')
+const bodyParser = require('body-parser')
 
 app.use(
     express.urlencoded({
@@ -7,23 +9,17 @@ app.use(
     })
 )
 app.use(express.json())
+app.use(bodyParser.json()) // application/json
 
-// rotas - endpoinst
-app.get('/', (req, res) => {
-    res.status(200).json({message: 'Primeira rota criada!'})
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*')
+    res.setHeader('Access-Control-Alow-Methods', 'GET, POST, PUT, PATCH, DELETE')
+    res.setHeader('Access-Control-Allow-Header', 'Content-Type, Authorization')
+    next()
 })
 
-app.post('/createProduct', (req, res) => {
-    const name = req.body.name
-    const price = req.body.price
-    if(!name){
-        res.status(422).json({message: 'Erro. O nome do produto é obrigatório!'})
-        return
-    }
-    console.log(name)
-    console.log(price)
-    res.status(201).json({message: `O produto ${name} foi inserido com o preço R$${price}`})
-})
+// endpoints
+app.use('/feed', feedRoutes)
 
 app.listen(3000, () => {
     console.log('Server iniciado com sucesso!')
