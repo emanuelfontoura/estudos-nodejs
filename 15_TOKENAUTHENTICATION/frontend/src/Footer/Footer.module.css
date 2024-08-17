@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+.footer{
+    padding: 1rem;
+    text-align: center;
+    font-size: 1rem;
+    background-color: rgb(75, 74, 74);
+}
+
+.link{
+    color: rgba(233, 155, 124, 0.933);
+}
