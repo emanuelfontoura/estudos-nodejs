@@ -13,7 +13,7 @@ app.use(express.urlencoded({
 }))
 app.use(express.json())
 
-app.use('', authRoutes)
+app.use('/login', authRoutes)
 
 conn.sync()
 .then(() => {
