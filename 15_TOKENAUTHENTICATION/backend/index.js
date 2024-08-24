@@ -3,6 +3,7 @@ const app = express()
 const conn = require('./db/conn.js')
 
 const authRoutes = require('./routes/authRoutes.js')
+const dashboardRoutes = require('./routes/dashboardRoutes.js')
 
 // middleware para definir arquivos estáticos
 app.use(express.static('public'))
@@ -14,6 +15,7 @@ app.use(express.urlencoded({
 app.use(express.json())
 
 app.use('/login', authRoutes)
+app.use('', dashboardRoutes)
 
 conn.sync()
 .then(() => {
