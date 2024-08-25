@@ -17,16 +17,16 @@ const LoginForm = () => {
         e.preventDefault()
         const formData = new FormData(e.target)
         const data = Object.fromEntries(formData.entries())
-        console.log(JSON.stringify(data))
-        const response = await loginFetch.request('http://localhost:3000/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type' : 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-        console.log(loginFetch.data)
-        if(response.ok) navigate('/dashboard')
+        if(email.validate() && password.validate()){
+            const {response, json} = await loginFetch.request('http://localhost:3000/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type' : 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            if(response.ok) navigate('/dashboard')
+        }
     }
 
     return <section className={styles.section}>

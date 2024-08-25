@@ -2,6 +2,12 @@
 const express= require('express')
 const app = express()
 const conn = require('./db/conn.js')
+const session = require('express-session')
+const fileStore = require('session-file-store')(session)
+require('dotenv').config()
+
+// variables do .env
+const EXPSECRET = process.env.EXPSESSION_SECRET
 
 // importação dos router com as rotas
 const authRoutes = require('./routes/authRoutes.js')
@@ -17,11 +23,29 @@ app.use(express.urlencoded({
 app.use(express.json())
 
 // middleware para permitir o cross-origin
-app.use((req, res, nex) => {
+app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*')
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE')
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+    next()
 })
+
+// configurando a session
+app.use(session({
+    name: "session",
+    secret: EXPSECRET,
+    resave: false,
+    saveUninitialized: true,
+    store: new fileStore({
+        logFn : function(){},
+        path: require('path').join(require('os').tmpdir(), 'sessions')
+    }),
+    cookie: {
+        secure: false,
+        maxAge: 600000,
+        httpOnly: true
+    }
+}))
 
 // middlewares para as rotas
 app.use('/login', authRoutes)

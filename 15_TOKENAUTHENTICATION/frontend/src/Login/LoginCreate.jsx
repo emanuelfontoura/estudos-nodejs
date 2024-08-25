@@ -27,7 +27,7 @@ const LoginCreate = () => {
                 },
                 body: JSON.stringify(data)
             })
-            if(response.ok) navigate('/')
+            if(response.ok) navigate('/login')
         }
     }
 
