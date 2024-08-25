@@ -12,7 +12,6 @@ const usePassword = (password) => {
             setError('Senhas diferentes. Por favor, digite novamente!')
             return false
         }else{
-            console.log(_value)
             setError(null)
             return true
         }

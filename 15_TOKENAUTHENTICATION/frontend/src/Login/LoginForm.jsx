@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import Input from '../Form/Input.jsx'
 import Button from '../Form/Button.jsx'
 import useForm from '../../Hooks/useForm.jsx'
@@ -10,18 +11,22 @@ const LoginForm = () => {
     const email = useForm()
     const password = useForm()
     const loginFetch = useFetch()
+    const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         const formData = new FormData(e.target)
         const data = Object.fromEntries(formData.entries())
-        await loginFetch.request('http://localhost:3000/login', {
+        console.log(JSON.stringify(data))
+        const response = await loginFetch.request('http://localhost:3000/login', {
             method: 'POST',
             headers: {
                 'Content-Type' : 'application/json'
             },
             body: JSON.stringify(data)
         })
+        console.log(loginFetch.data)
+        if(response.ok) navigate('/dashboard')
     }
 
     return <section className={styles.section}>

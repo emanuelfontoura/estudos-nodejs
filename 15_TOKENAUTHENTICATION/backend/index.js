@@ -1,7 +1,9 @@
+// importação dos arquivos/packages necessários
 const express= require('express')
 const app = express()
 const conn = require('./db/conn.js')
 
+// importação dos router com as rotas
 const authRoutes = require('./routes/authRoutes.js')
 const dashboardRoutes = require('./routes/dashboardRoutes.js')
 
@@ -14,9 +16,18 @@ app.use(express.urlencoded({
 }))
 app.use(express.json())
 
+// middleware para permitir o cross-origin
+app.use((req, res, nex) => {
+    res.setHeader('Access-Control-Allow-Origin', '*')
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE')
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+})
+
+// middlewares para as rotas
 app.use('/login', authRoutes)
 app.use('', dashboardRoutes)
 
+// conexão e sincronização com o banco de dados
 conn.sync()
 .then(() => {
     const port = 3000
