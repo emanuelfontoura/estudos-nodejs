@@ -93,6 +93,7 @@ module.exports = class AuthController{
         try{
             const data = await User.create({username, email, password: hashedPassword})
             res.status(201).json({
+                statusCode: 201,
                 message: 'Register sucessful',
                 data: {
                    id: data.id,
@@ -104,6 +105,7 @@ module.exports = class AuthController{
             next()
         }catch(err){
             res.status(400).json({
+                ststusCode: 400,
                 message: 'Register unsucessful',
                 error: err.message
             })
