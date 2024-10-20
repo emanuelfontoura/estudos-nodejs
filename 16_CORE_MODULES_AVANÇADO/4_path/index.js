@@ -34,7 +34,7 @@ console.log(`
     `)
 
 // relative
-console.log(path.relative(filePath, filePath2))
+console.log(path.relative(filePath2, filePath))
 
 // resolve
-console.log(path.resolve('C:/Redsis/Redsis.exe', 'Redsis/Redsis.exe'))
+console.log(path.resolve('C:/Content', 'subfolder', 'archive.txt'))
